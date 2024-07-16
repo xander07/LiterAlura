@@ -6,7 +6,9 @@ public class ConvertirDatos implements IConvertirDatos {
 
     private ObjectMapper objectMapper;
 
-    public ConvertirDatos() {}
+    public ConvertirDatos() {
+        this.objectMapper = new ObjectMapper();
+    }
 
     public <T> T gettingData(String jsonData, Class<T> clase) {
         if (jsonData == null || jsonData.isEmpty()) {
@@ -18,12 +20,13 @@ public class ConvertirDatos implements IConvertirDatos {
 
             if (data == null) {
                 System.out.println("No hay datos en el JSON");
-            } else {
-                System.out.println("Datos en el JSON: " + data);
-            }
+                }
+//            } else {
+//                System.out.println("Datos en el JSON: " + data);
+//            }
             return data;
         } catch (Exception e) {
-            System.out.println("Ocurrio un error al convertir el JSON: " + jsonData);
+            System.out.println("Ocurrio un error al convertir el JSON: " + e.getMessage());
             return null;
         }
     }

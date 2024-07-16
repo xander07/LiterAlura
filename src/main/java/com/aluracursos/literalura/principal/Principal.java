@@ -82,6 +82,7 @@ public class Principal {
                             break;
 
                         case 0:
+                            System.out.println("Hasta luego!!!");
                             break;
                         default:
                             System.out.println("Opción Inválida");
@@ -103,6 +104,7 @@ public class Principal {
         var json = consumoApi.obtenerDatos(URL_BASE +
                 URL_SEARCH + titulo);
 
+
         var datos = convertirDatos.gettingData(json, Datos.class);
 
         Optional<LibroData> busquedaLibro = datos.libros()
@@ -122,9 +124,7 @@ public class Principal {
             );
 
             try {
-                List<Libro> libroEncontrado;
-
-                libroEncontrado = busquedaLibro.stream()
+                List<Libro> libroEncontrado = busquedaLibro.stream()
                         .map(libro -> new Libro(libro))
                         .collect(Collectors.toList());
 
@@ -153,6 +153,10 @@ public class Principal {
                     } else {
                         autor = autorEncontrado;
                         repository.save(autor);
+                    }
+
+                    for (Libro libro : libroEncontrado) {
+                        libro.setAutor(autor);
                     }
 
                     autor.setLibros(libroEncontrado);
