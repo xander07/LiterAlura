@@ -25,5 +25,5 @@ public interface LibroRepository extends JpaRepository<Autor, Long> {
 
 
     @Query("SELECT l FROM autores a join a.libros l WHERE l.idioma = :idioma")
-    List<Book> findLibroByIdioma(Lenguaje idioma);
+    List<Libro> findLibroByIdioma(Lenguaje idioma);
 }
